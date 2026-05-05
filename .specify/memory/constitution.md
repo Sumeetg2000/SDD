@@ -130,3 +130,15 @@ with Principles I–IV. Complexity that cannot be justified against these princi
 MUST NOT be merged.
 
 **Version**: 1.0.0 | **Ratified**: 2026-05-05 | **Last Amended**: 2026-05-05
+
+---
+
+## Deferred Amendments
+
+The following dependency additions were approved informally as part of feature `001-tracker-initial-setup` and are recorded here pending a formal PR amendment.
+They MUST be formalised as a MINOR amendment (→ v1.1.0) before the feature branch is merged.
+
+| Package | Type | Justification | Approved in |
+|---------|------|---------------|-------------|
+| `antd` ^5 | Runtime | Accessible Modal (focus trap, Escape, scroll lock, ARIA) is ~200 lines from scratch; Ant Design ships production-tested components | plan.md Complexity Tracking, feature 001 |
+| `date-fns` ^4 | Runtime | `differenceInCalendarDays` handles DST-safe whole-day diff; naive `Date` arithmetic fails around DST transitions | plan.md Complexity Tracking, feature 001 |
