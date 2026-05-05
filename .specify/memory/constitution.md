@@ -1,50 +1,132 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!--
+SYNC IMPACT REPORT
+==================
+Version change: [PLACEHOLDER] → 1.0.0 (initial constitution — all placeholders filled)
+Modified principles: N/A (first ratification)
+Added sections: Core Principles (4), Technology Stack, Development Workflow, Governance
+Removed sections: N/A
+Templates updated:
+  ✅ .specify/memory/constitution.md (this file)
+  ✅ .specify/templates/plan-template.md (Constitution Check gates aligned)
+  ✅ .specify/templates/spec-template.md (requirements section note aligned)
+  ✅ .specify/templates/tasks-template.md (phase notes aligned)
+Deferred TODOs: none
+-->
+
+# SDD Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. Clean Code (NON-NEGOTIABLE)
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+Every file, function, and component MUST be readable, intentional, and maintainable.
+Rules:
+- Functions MUST do one thing; files MUST have one clear responsibility.
+- Names MUST be descriptive and self-documenting — abbreviations are forbidden.
+- Dead code, commented-out code, and unused imports MUST be removed before merge.
+- Nesting depth MUST NOT exceed three levels; extract early-return guards or helper
+  functions to enforce this.
+- TypeScript strict mode MUST be enabled; `any` is forbidden unless justified in a comment.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+**Rationale**: Code is read far more often than it is written. Unclear code creates bugs,
+slows onboarding, and erodes long-term maintainability.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### II. Simple UX
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+Every user-facing interaction MUST be intuitive without documentation or tooltips.
+Rules:
+- Screens MUST NOT contain more than one primary action per viewport.
+- User flows MUST be completable in the fewest possible steps; unnecessary steps
+  MUST be eliminated.
+- Error messages MUST state what happened and what the user should do next,
+  in plain language.
+- Loading and empty states MUST always be handled visibly.
+- No feature may be added solely because it is technically possible; every feature
+  MUST solve a named user problem.
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+**Rationale**: A simple, focused UX reduces cognitive load, increases task completion
+rates, and lowers support burden.
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+### III. Responsive Design
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+The application MUST work correctly and look polished on mobile (≥320 px),
+tablet (≥768 px), and desktop (≥1280 px) viewports.
+Rules:
+- Tailwind CSS utility classes MUST be used for all layout and spacing; custom CSS
+  is only permitted for animations or browser-quirk workarounds.
+- Mobile-first breakpoints (`sm:`, `md:`, `lg:`) MUST be used; desktop-only styles
+  are never the base style.
+- Touch targets MUST be ≥44 × 44 px on mobile.
+- Images and media MUST use responsive sizing (`w-full`, `max-w-*`, or `<picture>`).
+- Every new UI component MUST be visually verified at all three breakpoints before
+  it is considered done.
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+**Rationale**: A majority of users access web applications on mobile devices.
+Responsive design is a baseline expectation, not an enhancement.
+
+### IV. Minimal Dependencies
+
+The dependency footprint MUST be kept as small as possible.
+Rules:
+- The mandatory runtime dependencies are React and Tailwind CSS ONLY.
+  Any additional runtime package MUST be approved by a principle amendment.
+- Before adding a new package, the team MUST confirm that the feature cannot be
+  implemented with reasonable effort using existing dependencies or browser APIs.
+- All dependencies MUST be actively maintained (last release ≤ 18 months).
+- Dev-only tooling (Vite, TypeScript, ESLint) is exempt from approval but MUST NOT
+  appear in `dependencies` (only in `devDependencies`).
+- Package versions MUST be pinned to minor range (`^X.Y.Z`) in `package.json`.
+
+**Rationale**: Each added dependency is a surface area for security vulnerabilities,
+breaking changes, and bundle size growth. Lean dependencies reduce risk.
+
+## Technology Stack
+
+The following stack is MANDATORY and cannot be changed without a constitution amendment:
+
+| Layer | Technology | Version constraint |
+|-------|------------|--------------------|
+| UI Framework | React | `^19` |
+| Styling | Tailwind CSS | `^3` or `^4` |
+| Language | TypeScript (strict) | `~6` |
+| Build tool | Vite | `^8` |
+| Linting | ESLint + typescript-eslint | current |
+
+All source code MUST reside under `src/`. Components MUST be `.tsx` files.
+Utility/pure functions MUST be `.ts` files with no JSX.
+
+## Development Workflow
+
+1. Every feature MUST start from a spec (`spec.md`) before any code is written.
+2. A Constitution Check gate in `plan.md` MUST be completed before Phase 0 research.
+3. UI components MUST be reviewed at all three responsive breakpoints before the
+   task is marked done.
+4. ESLint MUST pass (`npm run lint`) with zero errors before any commit is merged.
+5. The TypeScript build MUST pass (`npm run build`) with zero errors before merge.
+6. Dependency additions MUST be discussed as a constitution amendment proposal and
+   documented in a PR description before the package is installed.
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+This constitution supersedes all other project practices, style guides, and verbal
+agreements. Any conflict defaults to the constitution.
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+Amendment procedure:
+1. Open a PR with the proposed change to this file.
+2. State the version bump type (MAJOR / MINOR / PATCH) and rationale.
+3. Update `LAST_AMENDED_DATE` and `CONSTITUTION_VERSION` in the footer.
+4. All open plan.md and tasks.md files MUST be re-checked against the new version
+   before implementation continues.
+
+Versioning policy (semantic):
+- MAJOR: A principle is removed, renamed, or its rules become incompatible with
+  existing code.
+- MINOR: A new principle or section is added, or existing guidance is materially
+  expanded.
+- PATCH: Wording clarifications, typo fixes, non-semantic refinements.
+
+All PRs/reviews MUST include a Constitution Check section confirming compliance
+with Principles I–IV. Complexity that cannot be justified against these principles
+MUST NOT be merged.
+
+**Version**: 1.0.0 | **Ratified**: 2026-05-05 | **Last Amended**: 2026-05-05

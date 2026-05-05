@@ -31,7 +31,16 @@
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-[Gates determined based on constitution file]
+Verify all four principles from the SDD Constitution (v1.0.0) before proceeding:
+
+- [ ] **I. Clean Code** — TypeScript strict mode on, no `any`, functions single-purpose,
+  nesting ≤ 3 levels, no dead/commented code.
+- [ ] **II. Simple UX** — Each viewport has one primary action, all states (loading/empty/
+  error) handled, user flows minimized, error messages actionable.
+- [ ] **III. Responsive Design** — Mobile-first Tailwind breakpoints used, touch targets
+  ≥ 44 × 44 px, component verified at 320 px / 768 px / 1280 px.
+- [ ] **IV. Minimal Dependencies** — No new runtime packages beyond React + Tailwind
+  without a constitution amendment. Dev tooling stays in `devDependencies`.
 
 ## Project Structure
 

@@ -82,6 +82,11 @@
   Fill them out with the right functional requirements.
 -->
 
+> **Constitution Constraints (SDD v1.0.0)**: All requirements MUST respect the four
+> governing principles — Clean Code, Simple UX, Responsive Design, Minimal Dependencies.
+> Implementation MUST use React + Tailwind CSS only. No additional runtime dependencies
+> without a constitution amendment.
+
 ### Functional Requirements
 
 - **FR-001**: System MUST [specific capability, e.g., "allow users to create accounts"]

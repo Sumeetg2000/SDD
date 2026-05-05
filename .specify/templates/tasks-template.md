@@ -48,6 +48,9 @@ description: "Task list template for feature implementation"
 
 **Purpose**: Project initialization and basic structure
 
+> **Constitution Check (SDD v1.0.0)**: Confirm React + Tailwind CSS stack, TypeScript
+> strict mode, ESLint passing, and mobile-first Tailwind config before any feature work.
+
 - [ ] T001 Create project structure per implementation plan
 - [ ] T002 Initialize [language] project with [framework] dependencies
 - [ ] T003 [P] Configure linting and formatting tools
