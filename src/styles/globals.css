@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+@theme {
+  --color-pastel-mint: #d4f1e4;
+  --color-pastel-peach: #fde8d8;
+  --color-pastel-lavender: #e8e0f7;
+  --color-pastel-sky: #d6eeff;
+  --color-pastel-lemon: #fef9c3;
+  --color-pastel-rose: #fce4ec;
+  --color-surface: #fafafa;
+  --color-surface-card: #ffffff;
+  --color-text-primary: #1a1a2e;
+  --color-text-muted: #6b7280;
+  --color-urgent: #fde8d8;
+  --color-urgent-border: #f97316;
+}
